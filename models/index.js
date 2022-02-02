@@ -1,3 +1,3 @@
 const Category = require("./Category");
 
-module.exports = { User };
+module.exports = { Category };
