@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const { Tag } = require("../../models");
+const { ProductTag } = require("../../models");
 
 router.get("/", (req, res) => {
-  // Return all Tag
-  Tag.findAll()
-    .then((TagData) => res.json(TagData))
+  // Return all product tags
+  ProductTag.findAll()
+    .then((ProductTagData) => res.json(ProductTagData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -12,19 +12,19 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  // Return one tag
-  Tag.findOne({
+  // Return one ProductTag
+  ProductTag.findOne({
     where: {
       id: req.params.id,
     },
   })
-    .then((TagData) => {
-      if (!TagData) {
-        res.status(404).json({ message: "No tag data by that id" });
+    .then((ProductTagData) => {
+      if (!ProductTagData) {
+        res.status(404).json({ message: "No ProductTag data by that id" });
         return;
       }
 
-      res.json(TagData);
+      res.json(ProductTagData);
     })
     .catch((err) => {
       console.log(err);
@@ -33,10 +33,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  Tag.create({
-    tag_name: req.body.tag_name,
+  ProductTag.create({
+    product_id: req.body.product_id,
+    tag_id: req.body.tag_id,
   })
-    .then((TagData) => res.json(TagData))
+    .then((ProductTagData) => res.json(ProductTagData))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -44,18 +45,18 @@ router.post("/", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-  Tag.update(req.body, {
+  ProductTag.update(req.body, {
     where: {
       id: req.params.id,
     },
   })
-    .then((TagData) => {
-      if (!TagData[0]) {
+    .then((ProductTagData) => {
+      if (!ProductTagData[0]) {
         res.status(404).json({ message: "no data found" });
         return;
       }
 
-      res.json(TagData);
+      res.json(ProductTagData);
     })
     .catch((err) => {
       console.log(err);
@@ -64,17 +65,17 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  Tag.destroy({
+  ProductTag.destroy({
     where: {
       id: req.params.id,
     },
   })
-    .then((TagData) => {
-      if (!TagData) {
+    .then((ProductTagData) => {
+      if (!ProductTagData) {
         res.status(404).json({ message: "No data found" });
         return;
       }
-      res.json(TagData);
+      res.json(ProductTagData);
     })
     .catch((err) => {
       console.log(err);

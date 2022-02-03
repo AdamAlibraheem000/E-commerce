@@ -1,5 +1,7 @@
 const Category = require("./Category");
 const Product = require("./Product");
+const Tag = require("./Tag");
+const ProductTag = require("./ProductTag");
 
 // Associations
 Category.hasMany(Product, {
@@ -10,4 +12,4 @@ Product.belongsTo(Category, {
   foreignKey: "id",
 });
 
-module.exports = { Category, Product };
+module.exports = { Category, Product, Tag, ProductTag };
