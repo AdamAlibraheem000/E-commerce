@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  User.destroy({
+  Category.destroy({
     where: {
       id: req.params.id,
     },
