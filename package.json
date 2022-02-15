@@ -6,6 +6,8 @@
     "sequelize": "^6.15.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seeds": "node seeds/index.js"
+    
   }
 }
